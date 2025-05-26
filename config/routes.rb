@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
   get "my_bookings", to: "bookings#my_bookings", as: :my_bookings
+  patch "/bookings/:id/approve", to: "bookings#approve", as: :approve
+  patch "/bookings/:id/deny", to: "bookings#deny", as: :deny
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -3,6 +3,7 @@
   <% @my_bookings.each do |booking| %>
     <li>
       <h5><%= link_to booking.tub.name, tub_path(booking.tub) %></h5>
+      <p><%= booking.status.upcase %></p>
       <p><%= booking.tub.description %></p>
       <p>Price: $<%= booking.tub.price %> Total: $<%= booking.cost %></p>
       <p>Size: <%= booking.tub.size %>, Category: <%= booking.tub.category %></p>
@@ -17,10 +18,19 @@
   <% @my_booked_tubs.each do |booking| %>
     <li>
       <h5><%= link_to booking.tub.name, tub_path(booking.tub) %></h5>
+      <p><%= booking.status.upcase %></p>
       <p>Booked by: <%= booking.user.first_name %> <%= booking.user.last_name %></p>
       <p>Price: $<%= booking.tub.price %> Total: $<%= booking.cost %></p>
       <p>Size: <%= booking.tub.size %>, Category: <%= booking.tub.category %></p>
       <p><%= booking.start_date %> to <%= booking.end_date %></p>
+      <% if booking.pending? %>
+        <%= link_to "Approve", approve_path(booking),
+        data: {turbo_method: :patch, turbo_confrim: "Confirm this booking?" },
+        class: "btn btn-primary" %>
+        <%= link_to "Deny", deny_path(booking),
+        data: {turbo_method: :patch, turbo_confrim: "Deny this booking?" },
+        class: "btn btn-danger" %>
+      <% end %>
     </li>
   <% end %>
 </ul>

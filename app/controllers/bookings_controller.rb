@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_tub, only: [:new, :create]
+  before_action :set_booking, only: [:approve, :deny]
 
   def new
     @booking = Booking.new
@@ -21,7 +22,21 @@ class BookingsController < ApplicationController
     @my_booked_tubs = current_user.booked_tubs
   end
 
+  def approve
+    @booking.approve!
+    redirect_to my_bookings_path, notice: "Booking approved."
+  end
+
+  def deny
+    @booking.deny!
+    redirect_to my_bookings_path, notice: "Booking denied."
+  end
+
   private
+
+  def set_booking
+    @booking = Booking.find(params[:id])
+  end
 
   def set_tub
     @tub = Tub.find(params[:tub_id])
