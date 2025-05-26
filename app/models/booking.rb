@@ -2,11 +2,24 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :tub
 
+  STATUSES = ["pending", "approved", "denied"].freeze
+
   validates :start_date, :end_date, presence: true
+  validates :status, inclusion: { in: STATUSES, message: "%{value} is not a valid status" }
+
   validate :no_overlap
   validate :cannot_book_own_tub
+  validate :end_date_after_start
 
   before_save :calculate_cost
+
+    def approve!
+      self.status = "approved"
+    end
+
+    def deny!
+      self.status = "denied"
+    end
 
   private
 
@@ -38,6 +51,12 @@ class Booking < ApplicationRecord
 
     if tub.user_id == user_id
       errors.add(:base, "You cannot book your own tub.")
+    end
+  end
+
+  def end_date_after_start
+    if end_date < start_date
+      errors.add(:end_date, "End date must be after start date.")
     end
   end
 end
