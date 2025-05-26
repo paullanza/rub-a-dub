@@ -3,4 +3,6 @@
 <p>Price: $<%= @tub.price %></p>
 <p>Size: <%= @tub.size %>, Category: <%= @tub.category %></p>
 
+<%= link_to "Book this tub!", new_tub_booking_path(@tub) %>
+
 <%= link_to "Go back", tubs_path, class: "btn btn-primary"%>
