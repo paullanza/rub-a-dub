@@ -3,8 +3,7 @@
 <ul>
   <% @tubs.each do |tub| %>
     <li>
-      <%# <h5><%= link_to tub.name, tub_path(tub) %></h5>
-      <h5><%= tub.name %></h5>
+      <h5><%= link_to tub.name, tub_path(tub) %></h5>
       <p><%= tub.description %></p>
       <p>Price: $<%= tub.price %></p>
       <p>Size: <%= tub.size %>, Category: <%= tub.category %></p>
