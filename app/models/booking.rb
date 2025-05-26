@@ -13,13 +13,19 @@ class Booking < ApplicationRecord
 
   before_save :calculate_cost
 
-    def approve!
-      self.status = "approved"
-    end
+  def approve!
+    self.status = "approved"
+    self.save
+  end
 
-    def deny!
-      self.status = "denied"
-    end
+  def deny!
+    self.status = "denied"
+    self.save
+  end
+
+  def pending?
+    status == "pending"
+  end
 
   private
 
