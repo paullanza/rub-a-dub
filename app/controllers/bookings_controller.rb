@@ -16,6 +16,11 @@ class BookingsController < ApplicationController
     end
   end
 
+  def my_bookings
+    @my_bookings = current_user.bookings
+    @my_booked_tubs = current_user.booked_tubs
+  end
+
   private
 
   def set_tub
