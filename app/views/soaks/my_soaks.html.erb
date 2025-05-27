@@ -1,0 +1,36 @@
+<h1><%= current_user.first_name %>'s Soaks</h1>
+<ul>
+  <% @my_soaks.each do |soak| %>
+    <li>
+      <h5><%= link_to soak.tub.name, tub_path(soak.tub) %></h5>
+      <p><%= soak.status.upcase %></p>
+      <p><%= soak.tub.description %></p>
+      <p>Price: $<%= soak.tub.price %> Total: $<%= soak.cost %></p>
+      <p>Size: <%= soak.tub.size %>, Category: <%= soak.tub.category %></p>
+      <p><%= soak.start_date %> to <%= soak.end_date %></p>
+    </li>
+  <% end %>
+</ul>
+
+<h1>Soaks of <%= current_user.first_name %>'s Tubs</h1>
+
+<ul>
+  <% @my_booked_tubs.each do |soak| %>
+    <li>
+      <h5><%= link_to soak.tub.name, tub_path(soak.tub) %></h5>
+      <p><%= soak.status.upcase %></p>
+      <p>Booked by: <%= soak.user.first_name %> <%= soak.user.last_name %></p>
+      <p>Price: $<%= soak.tub.price %> Total: $<%= soak.cost %></p>
+      <p>Size: <%= soak.tub.size %>, Category: <%= soak.tub.category %></p>
+      <p><%= soak.start_date %> to <%= soak.end_date %></p>
+      <% if soak.pending? %>
+        <%= link_to "Approve", approve_path(soak),
+        data: {turbo_method: :patch, turbo_confrim: "Confirm this soak?" },
+        class: "btn btn-primary" %>
+        <%= link_to "Deny", deny_path(soak),
+        data: {turbo_method: :patch, turbo_confrim: "Deny this soak?" },
+        class: "btn btn-danger" %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

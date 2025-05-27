@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :tubs, only: [:index, :show] do
-    resources :bookings, only: [:new, :create]
+  resources :tubs, only: [:index, :show, :new, :create] do
+    resources :soaks, only: [:new, :create]
   end
-  get "my_bookings", to: "bookings#my_bookings", as: :my_bookings
-  patch "/bookings/:id/approve", to: "bookings#approve", as: :approve
-  patch "/bookings/:id/deny", to: "bookings#deny", as: :deny
+
+  get "my_soaks", to: "soaks#my_soaks", as: :my_soaks
+
+  patch "/soaks/:id/approve", to: "soaks#approve", as: :approve
+  patch "/soaks/:id/deny", to: "soaks#deny", as: :deny
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

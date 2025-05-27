@@ -2,7 +2,7 @@ puts "Clearing out the database! 🧹"
 
 User.destroy_all
 Tub.destroy_all
-Booking.destroy_all
+Soak.destroy_all
 
 puts "Database cleared!"
 
