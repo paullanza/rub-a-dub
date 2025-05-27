@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :soaks, only: [:new, :create]
   end
 
+  get "my_tubs", to: "tubs#my_tubs", as: :my_tubs
+
   get "my_soaks", to: "soaks#my_soaks", as: :my_soaks
 
   patch "/soaks/:id/approve", to: "soaks#approve", as: :approve
