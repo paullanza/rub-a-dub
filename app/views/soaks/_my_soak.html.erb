@@ -4,7 +4,7 @@
     <div class="card-product-infos">
       <h2><%= soak.tub.name %> - <span class="status-tag <%= soak.status %>"><%= soak.status.upcase %></span></h2>
       <p><em>| <%= soak.tub.size.capitalize %> | <%= soak.tub.category.capitalize %> |</em></p>
-      <p>From: <%= soak.start_date %> to <%= soak.end_date %></p>
+      <p><%= soak.user.first_name %> - From: <%= soak.start_date %> to <%= soak.end_date %></p>
       <p>Cost per day: <%= number_to_currency soak.tub.price %> Total cost: <%= number_to_currency soak.cost %></p>
     </div>
   </div>
