@@ -1,8 +1,21 @@
 <h5><%= @tub.name %></h5>
 <p><%= @tub.description %></p>
+<p>| <%= @tub.size.capitalize %> | <%= @tub.category.capitalize %> |</p>
 <p>Price: <%= number_to_currency @tub.price %></p>
-<p>Size: <%= @tub.size %>, Category: <%= @tub.category %></p>
 
-<%= link_to "Soak in this tub!", new_tub_soak_path(@tub) %>
+<div data-controller="modal">
 
-<%= link_to "Go back", tubs_path, class: "btn btn-primary"%>
+  <button class="btn btn-light" data-action="click->modal#open">Soak in this tub!</button>
+  <div class="modal-overlay d-none" data-modal-target="overlay">
+    <div class="modal-box card shadow p-4">
+      <button type="button" class="btn-close ms-auto mb-2" data-action="click->modal#close" aria-label="Close"></button>
+
+      <div class="modal-box">
+        <%= render "soaks/form", tub: @tub %>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<%= link_to "Go back", tubs_path, class: "btn btn-dark" %>
