@@ -1,0 +1,14 @@
+<%= link_to tub_path(tub), class: "text-reset text-decoration-none" do %>
+  <div class="card-trip my-5">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <div class="card-trip-infos">
+      <div>
+        <h2><%= tub.name %></h2>
+        <p><%= tub.short_desc %></p>
+        <p>| <%= tub.size.capitalize %> | <%= tub.category.capitalize %> |</p>
+      </div>
+      <h2 class="card-trip-pricing"><%= number_to_currency tub.price %></h2>
+      <img src="https://kitt.lewagon.com/placeholder/users/krokrob" class="card-trip-user avatar-bordered" />
+    </div>
+  </div>
+<% end %>

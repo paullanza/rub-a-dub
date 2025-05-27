@@ -10,4 +10,12 @@ class Tub < ApplicationRecord
   validates :description, length: { minimum: 25, too_short: "%{count} characters is the minimum allowed" }
   validates :size, inclusion: { in: SIZES, message: "%{value} is not a valid size." }
   validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category." }
+
+  def short_desc
+    if description.length > 60
+      "#{description[0, 60]}..."
+    else
+      description
+    end
+  end
 end

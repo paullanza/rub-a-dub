@@ -1,6 +1,6 @@
 <h5><%= @tub.name %></h5>
 <p><%= @tub.description %></p>
-<p>Price: $<%= @tub.price %></p>
+<p>Price: <%= number_to_currency @tub.price %></p>
 <p>Size: <%= @tub.size %>, Category: <%= @tub.category %></p>
 
 <%= link_to "Soak in this tub!", new_tub_soak_path(@tub) %>

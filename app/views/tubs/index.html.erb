@@ -1,14 +1,7 @@
-<h1>All Tubs</h1>
-
-<ul>
+<ul class="list-unstyled cards">
   <% @tubs.each do |tub| %>
     <li>
-      <h5><%= link_to tub.name, tub_path(tub) %></h5>
-      <p><%= tub.description %></p>
-      <p>Price: $<%= tub.price %></p>
-      <p>Size: <%= tub.size %>, Category: <%= tub.category %></p>
+      <%= render "tub", tub: tub %>
     </li>
   <% end %>
 </ul>
-
-<%= link_to "New tub!", new_tub_path %>
