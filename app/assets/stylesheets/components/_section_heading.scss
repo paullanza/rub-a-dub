@@ -1,0 +1,18 @@
+.section-heading {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #444;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 2rem 0;
+}
+
+.section-heading::before,
+.section-heading::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #aaa;
+  margin: 0 1rem;
+  transform: translateY(0.3em); /* aligns line with text baseline */
+}

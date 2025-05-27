@@ -1,0 +1,11 @@
+<%= link_to tub_path(soak.tub), class: "text-reset text-decoration-none" do %>
+  <div class="card-product">
+    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+    <div class="card-product-infos">
+      <h2><%= soak.tub.name %> - <span class="status-tag <%= soak.status %>"><%= soak.status.upcase %></span></h2>
+      <p><em>| <%= soak.tub.size.capitalize %> | <%= soak.tub.category.capitalize %> |</em></p>
+      <p>From: <%= soak.start_date %> to <%= soak.end_date %></p>
+      <p>Cost per day: <%= number_to_currency soak.tub.price %> Total cost: <%= number_to_currency soak.cost %></p>
+    </div>
+  </div>
+<% end %>
