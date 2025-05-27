@@ -7,6 +7,7 @@ class TubsController < ApplicationController
 
   def show
     @tub = Tub.find(params[:id])
+    @soak = Soak.new
   end
 
   def new
