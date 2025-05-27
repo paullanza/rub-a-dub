@@ -44,7 +44,7 @@ class Soak < ApplicationRecord
     soak = Soak
               .where(tub_id: tub_id)
               .where.not(id: id)
-              .where("start_date < ? AND end_date > ?", end_date, start_date)
+              .where("start_date <= ? AND end_date >= ?", end_date, start_date)
               .exists?
 
     if soak

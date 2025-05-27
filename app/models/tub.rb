@@ -1,6 +1,6 @@
 class Tub < ApplicationRecord
   belongs_to :user
-  has_many :bookings, dependent: :destroy
+  has_many :soaks, dependent: :destroy
 
   SIZES = ["extra small", "small", "medium", "extra medium", "large", "extra large"].freeze
   CATEGORIES = ["claw", "standard", "jet", "jacuzzi"].sort.freeze
