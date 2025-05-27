@@ -24,6 +24,10 @@ class TubsController < ApplicationController
     end
   end
 
+  def my_tubs
+    @tubs = Tub.where(user: current_user)
+  end
+
   private
 
   def set_tub

@@ -1,0 +1,8 @@
+<h1 class="section-heading"><%= current_user.first_name %>'s Tubs</h1>
+<ul class="list-unstyled cards">
+  <% @tubs.each do |tub| %>
+    <li>
+      <%= render "tub", tub: tub %>
+    </li>
+  <% end %>
+</ul>
