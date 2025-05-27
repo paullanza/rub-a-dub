@@ -1,4 +1,4 @@
-class Booking < ApplicationRecord
+class Soak < ApplicationRecord
   belongs_to :user
   belongs_to :tub
 
@@ -41,14 +41,14 @@ class Booking < ApplicationRecord
   def no_overlap
     return unless start_date && end_date
 
-    booking = Booking
+    soak = Soak
               .where(tub_id: tub_id)
               .where.not(id: id)
               .where("start_date < ? AND end_date > ?", end_date, start_date)
               .exists?
 
-    if booking
-      errors.add(:base, "Booking dates overlap with an existing booking for this tub.")
+    if soak
+      errors.add(:base, "Soak dates overlap with an existing soak for this tub.")
     end
   end
 
@@ -56,7 +56,7 @@ class Booking < ApplicationRecord
     return unless tub && user
 
     if tub.user_id == user_id
-      errors.add(:base, "You cannot book your own tub.")
+      errors.add(:base, "You cannot soak in your own tub.")
     end
   end
 

@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :tubs, dependent: :destroy
-  has_many :bookings, dependent: :destroy
-  has_many :booked_tubs, through: :tubs, source: :bookings
+  has_many :soaks, dependent: :destroy
+  has_many :booked_tubs, through: :tubs, source: :soaks
 
   validates :first_name, :last_name, presence: true
 end
