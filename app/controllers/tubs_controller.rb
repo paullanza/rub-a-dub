@@ -3,11 +3,18 @@ class TubsController < ApplicationController
 
   def index
     @tubs = Tub.all
+    set_markers
   end
 
   def show
     @tub = Tub.find(params[:id])
     @soak = Soak.new
+    @markers = [{
+        lat: @tub.latitude,
+        lng: @tub.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {tub: @tub}),
+        marker_html: render_to_string(partial: "map_marker")
+      }]
   end
 
   def new
@@ -26,12 +33,24 @@ class TubsController < ApplicationController
 
   def my_tubs
     @tubs = Tub.where(user: current_user)
+    set_markers
   end
 
   private
 
   def set_tub
     @tub = Tub.find(params[:id])
+  end
+
+  def set_markers
+    @markers = @tubs.geocoded.map do |tub|
+      {
+        lat: tub.latitude,
+        lng: tub.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {tub: tub}),
+        marker_html: render_to_string(partial: "map_marker")
+      }
+    end
   end
 
   def tub_params
