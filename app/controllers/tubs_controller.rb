@@ -4,6 +4,10 @@ class TubsController < ApplicationController
   def index
     @tubs = Tub.all
     set_markers
+
+    if params[:query].present?
+      @tubs = Tub.search_by_name_description_size_category_price_address(params[:query])
+    end
   end
 
   def show

@@ -1,4 +1,8 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-<%= link_to "All Tubs", tubs_path %>
+<div class="splash-page d-flex flex-column justify-content-center align-items-center vh-100 text-center text-white">
+  <div class="overlay"></div>
+  <div class="content">
+    <h1 class="display-1 fw-bold mb-3">Rub-A-Dub</h1>
+    <p class="lead mb-4">Find your perfect bathtub getaway.</p>
+    <%= link_to "Browse Tubs", tubs_path, class: "btn btn-primary btn-lg px-5" %>
+  </div>
+</div>

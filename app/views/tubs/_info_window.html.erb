@@ -1,4 +1,9 @@
-<%= link_to tub_path(tub), class: "text-reset text-decoration-none" do %>
-  <h2><%= tub.name %></h2>
-  <p><%= tub.address %></p>
+<%= link_to tub_path(tub), class: "tub-card-link text-decoration-none" do %>
+  <div class="tub-card rounded shadow mb-4" style="background-image: url('<%= cl_image_path tub.photos.first.key %>');">
+    <div class="tub-card-overlay p-3">
+      <h2 class="fs-5 fw-bold m-0"><%= tub.name %></h2>
+      <p class="mb-0"><%= tub.address %></p>
+      <p class="mb-0"><%= number_to_currency tub.price %></p>
+    </div>
+  </div>
 <% end %>

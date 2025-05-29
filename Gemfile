@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 
+# PgSearch for advanced search functions
+gem "pg_search"
+
 # Photo uploads using Cloudinary
 gem "cloudinary"
 

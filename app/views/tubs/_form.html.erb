@@ -1,18 +1,54 @@
-<%= simple_form_for @tub do |f| %>
-  <%= f.input :name %>
-  <%= f.input :address,
-    input_html: {data: {address_autocomplete_target: "address"},
-      class: "d-none"
-      },
-    wrapper_html: {data: {
-      controller: "address-autocomplete",
-      address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]
-      }}
-  %>
-  <%= f.input :description, as: :text %>
-  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-  <%= f.input :price %>
-  <%= f.input :size, collection: Tub::SIZES %>
-  <%= f.input :category, collection: Tub::CATEGORIES %>
-  <%= f.submit class: "btn btn-primary"%>
-<% end %>
+<div class="tub-form card shadow-sm p-4">
+  <h2 class="mb-4">Add a Tub</h2>
+
+  <%= simple_form_for tub, html: { multipart: true } do |f| %>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= f.input :name, label: "Tub Name" %>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <%= f.input :price, label: "Price (in $)" %>
+      </div>
+
+      <div class="col-12 mb-3">
+        <%= f.input :address,
+          label: "Address",
+          input_html: {
+            data: { address_autocomplete_target: "address" },
+            class: "d-none"
+          },
+          wrapper_html: {
+            data: {
+              controller: "address-autocomplete",
+              address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]
+            }
+          }
+        %>
+      </div>
+
+      <div class="col-12 mb-3">
+        <%= f.input :description, as: :text %>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <%= f.input :size, collection: Tub::SIZES, prompt: "Select a size" %>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <%= f.input :category, collection: Tub::CATEGORIES, prompt: "Select a category" %>
+      </div>
+
+      <div class="col-12 mb-3">
+        <%= f.input :photos,
+            as: :file,
+            input_html: { multiple: true, class: "form-control" },
+            label: "Upload Photos" %>
+      </div>
+
+      <div class="col-12 mt-3">
+        <%= f.button :submit, class: "btn btn-primary w-100" %>
+      </div>
+    </div>
+  <% end %>
+</div>
