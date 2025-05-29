@@ -54,6 +54,6 @@ class TubsController < ApplicationController
   end
 
   def tub_params
-    params.require(:tub).permit(:name, :description, :price, :size, :category)
+    params.require(:tub).permit(:name, :address, :description, :price, :size, :category, photos: [])
   end
 end

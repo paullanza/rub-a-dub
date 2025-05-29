@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 
+# Photo uploads using Cloudinary
+gem "cloudinary"
+
 # Geocoder for map integration
 gem "geocoder"
 
