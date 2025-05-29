@@ -1,6 +1,8 @@
 <%= link_to tub_path(tub), class: "text-reset text-decoration-none" do %>
   <div class="card-trip my-5">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/greece.jpg" />
+    <% if tub.photos.any? %>
+      <%= cl_image_tag tub.photos.first.key, class: "card-img-top" %>
+    <% end %>
     <div class="card-trip-infos">
       <div>
         <h2><%= tub.name %> - <%= tub.user.first_name %></h2>

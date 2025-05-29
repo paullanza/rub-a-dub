@@ -1,3 +1,7 @@
+<% @tub.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
+
 <h5><%= @tub.name %></h5>
 <p>Owner: <%= @tub.user.first_name %></p>
 <p><%= @tub.description %></p>
