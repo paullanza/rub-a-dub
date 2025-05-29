@@ -23,6 +23,9 @@ export default class extends Controller {
         { accessToken: mapboxgl.accessToken,
           mapboxgl: mapboxgl
         }))
+    this.map.scrollZoom.disable()
+    this.map.boxZoom.disable()
+    this.map.doubleClickZoom.disable()
   }
 
 

@@ -25,8 +25,8 @@ tub1 = Tub.create(
   name: "Hot Johnson Tub!",
   description: "This is a super great tub, fits at least 2!",
   address: "4669 rue de Brébeuf, Montreal",
-  size: "extra medium",
-  category: "standard",
+  size: Tub::SIZES.sample,
+  category: Tub::CATEGORIES.sample,
   price: 35,
   user: user1
 )
@@ -38,8 +38,8 @@ tub2 = Tub.create(
   name: "Power Jacuzzi!",
   description: "Fits 4 easily, place for an extra large pizza as well.",
   address: "5333 ave cagrain, Montreal",
-  size: "large",
-  category: "jacuzzi",
+  size: Tub::SIZES.sample,
+  category: Tub::CATEGORIES.sample,
   price: 55,
   user: user1
 )
@@ -51,8 +51,8 @@ tub3 = Tub.create(
   name: "Ultimate Massage",
   description: "A massive tub that will massage everyone inside!",
   address: "4690 rue St-Denis, Montreal",
-  size: "extra large",
-  category: "jet",
+  size: Tub::SIZES.sample,
+  category: Tub::CATEGORIES.sample,
   price: 100,
   user: user2
 )
@@ -64,8 +64,8 @@ tub4 = Tub.create(
   name: "Claw tub for 1",
   description: "Fits 4 easily, place for an extra large pizza as well.",
   address: "7422 rue St-Hubert, Montreal",
-  size: "small",
-  category: "claw",
+  size: Tub::SIZES.sample,
+  category: Tub::CATEGORIES.sample,
   price: 20,
   user: user2
 )

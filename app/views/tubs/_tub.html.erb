@@ -1,5 +1,5 @@
 <%= link_to tub_path(tub), class: "text-reset text-decoration-none" do %>
-  <div class="card-trip my-5">
+  <div class="card-trip mb-3 mt-2">
     <% if tub.photos.any? %>
       <%= cl_image_tag tub.photos.first.key, class: "card-img-top" %>
     <% end %>
