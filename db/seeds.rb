@@ -24,6 +24,7 @@ puts "Creating tubs! 🛁"
 tub1 = Tub.create(
   name: "Hot Johnson Tub!",
   description: "This is a super great tub, fits at least 2!",
+  address: "4669 rue de Brébeuf, Montreal",
   size: "extra medium",
   category: "standard",
   price: 35,
@@ -32,6 +33,7 @@ tub1 = Tub.create(
 tub2 = Tub.create(
   name: "Power Jacuzzi!",
   description: "Fits 4 easily, place for an extra large pizza as well.",
+  address: "5333 ave cagrain, Montreal",
   size: "large",
   category: "jacuzzi",
   price: 55,
@@ -40,6 +42,7 @@ tub2 = Tub.create(
 tub3 = Tub.create(
   name: "Ultimate Massage",
   description: "A massive tub that will massage everyone inside!",
+  address: "4690 rue St-Denis, Montreal",
   size: "extra large",
   category: "jet",
   price: 100,
@@ -48,6 +51,7 @@ tub3 = Tub.create(
 tub4 = Tub.create(
   name: "Claw tub for 1",
   description: "Fits 4 easily, place for an extra large pizza as well.",
+  address: "7422 rue St-Hubert, Montreal",
   size: "small",
   category: "claw",
   price: 20,
