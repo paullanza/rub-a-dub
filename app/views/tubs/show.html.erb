@@ -33,13 +33,13 @@
 
 <% end %>
 
-<% unless current_user.booked_tubs.where(tub: @tub).empty? %>
+<% unless current_user.soaks.where(tub: @tub).empty? %>
   <h1 class="section-heading">Your soaks booked for <%= @tub.name %></h1>
 
   <ul class="list-unstyled">
-    <% current_user.booked_tubs.where(tub: @tub).each do |soak| %>
+    <% current_user.soaks.where(tub: @tub, status: "approved").or(current_user.soaks.where(tub: @tub, status: "pending")).each do |soak| %>
       <li class="my-4">
-        <%= render "soaks/rental_soak", soak: soak %>
+        <%= render "soaks/my_soak", soak: soak %>
       </li>
     <% end %>
   </ul>
