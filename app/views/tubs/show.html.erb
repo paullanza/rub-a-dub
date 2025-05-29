@@ -1,11 +1,12 @@
 <h5><%= @tub.name %></h5>
+<p>Owner: <%= @tub.user.first_name %></p>
 <p><%= @tub.description %></p>
 <p>| <%= @tub.size.capitalize %> | <%= @tub.category.capitalize %> |</p>
 <p>Price: <%= number_to_currency @tub.price %></p>
 
-<div data-controller="modal">
+<div class="my-5" data-controller="modal">
 
-  <button class="btn btn-light" data-action="click->modal#open">Soak in this tub!</button>
+  <button class="btn btn-light" data-action="click->modal#open">Book a soak!</button>
   <div class="modal-overlay d-none" data-modal-target="overlay">
     <div class="modal-box card shadow p-4">
       <button type="button" class="btn-close ms-auto mb-2" data-action="click->modal#close" aria-label="Close"></button>
@@ -17,5 +18,32 @@
   </div>
 
 </div>
+
+
+<% if @tub.user == current_user %>
+  <h1 class="section-heading">Soaks booked for <%= @tub.name %></h1>
+
+  <ul class="list-unstyled">
+    <% @tub.soaks.each do |soak| %>
+      <li class="my-4">
+        <%= render "soaks/rental_soak", soak: soak %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
+
+<% unless current_user.soaks.where(tub: @tub).empty? %>
+  <h1 class="section-heading">Your soaks booked for <%= @tub.name %></h1>
+
+  <ul class="list-unstyled">
+    <% current_user.soaks.where(tub: @tub, status: "approved").or(current_user.soaks.where(tub: @tub, status: "pending")).each do |soak| %>
+      <li class="my-4">
+        <%= render "soaks/my_soak", soak: soak %>
+      </li>
+    <% end %>
+  </ul>
+
+<% end %>
 
 <%= link_to "Go back", tubs_path, class: "btn btn-dark" %>
