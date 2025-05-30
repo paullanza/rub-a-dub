@@ -2,7 +2,7 @@ class TubsController < ApplicationController
   before_action :set_tub, only: [:show]
 
   def index
-    @tubs = Tub.all
+    @tubs = policy_scope(Tub)
     set_markers
 
     if params[:query].present?
@@ -11,7 +11,6 @@ class TubsController < ApplicationController
   end
 
   def show
-    @tub = Tub.find(params[:id])
     @soak = Soak.new
     @markers = [{
         lat: @tub.latitude,
@@ -23,11 +22,14 @@ class TubsController < ApplicationController
 
   def new
     @tub = Tub.new
+    authorize @tub
   end
 
   def create
     @tub = Tub.new(tub_params)
     @tub.user = current_user
+    authorize @tub
+
     if @tub.save
       redirect_to tub_path(@tub)
     else
@@ -37,6 +39,7 @@ class TubsController < ApplicationController
 
   def my_tubs
     @tubs = Tub.where(user: current_user)
+    authorize Tub
     set_markers
   end
 
@@ -44,6 +47,7 @@ class TubsController < ApplicationController
 
   def set_tub
     @tub = Tub.find(params[:id])
+    authorize @tub
   end
 
   def set_markers

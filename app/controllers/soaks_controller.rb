@@ -4,12 +4,15 @@ class SoaksController < ApplicationController
 
   def new
     @soak = Soak.new
+    authorize @soak
   end
 
   def create
     @soak = Soak.new(soak_params)
     @soak.tub = @tub
     @soak.user = current_user
+    authorize @soak
+
     if @soak.save
       redirect_to tub_path(@tub)
     else
@@ -18,6 +21,7 @@ class SoaksController < ApplicationController
   end
 
   def my_soaks
+    authorize Soak, :my_soaks?
     @my_soaks = current_user.soaks
     @my_booked_tubs = current_user.booked_tubs
   end
@@ -36,6 +40,7 @@ class SoaksController < ApplicationController
 
   def set_soak
     @soak = Soak.find(params[:id])
+    authorize @soak
   end
 
   def set_tub

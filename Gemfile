@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.3.5"
 
+# Pundit gem for authorization
+gem "pundit"
+
 # PgSearch for advanced search functions
 gem "pg_search"
 
