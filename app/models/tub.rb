@@ -37,8 +37,8 @@ class Tub < ApplicationRecord
   validates :size, inclusion: { in: SIZES, message: "%{value} is not a valid size." }
   validates :category, inclusion: { in: CATEGORIES, message: "%{value} is not a valid category." }
 
-  pg_search_scope :search_by_name_description_size_category_price_address,
-                  against: [ :name, :description, :size, :category, :price, :address ],
+  pg_search_scope :search_by_name_and_description,
+                  against: [ :name, :description ],
                   using: {
                     tsearch: { prefix: true } # <-- now `superman batm` will return something!
                   }

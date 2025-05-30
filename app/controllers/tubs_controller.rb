@@ -6,7 +6,18 @@ class TubsController < ApplicationController
     set_markers
 
     if params[:query].present?
-      @tubs = Tub.search_by_name_description_size_category_price_address(params[:query])
+      @tubs = Tub.search_by_name_and_description(params[:query])
+    end
+
+    @tubs = @tubs.where(category: params[:category]) if params[:category].present?
+    @tubs = @tubs.where(size: params[:size]) if params[:size].present?
+
+    if params[:min_price].present?
+      @tubs = @tubs.where("price >= ?", params[:min_price].to_f)
+    end
+
+    if params[:max_price].present?
+      @tubs = @tubs.where("price <= ?", params[:max_price].to_f)
     end
   end
 
