@@ -1,19 +1,51 @@
-<!-- Search Bar -->
 <div class="row justify-content-center mt-4 mb-3">
-  <div class="col-md-8">
-    <%= form_with url: tubs_path, method: :get, class: "d-flex" do %>
-      <%= text_field_tag :query,
-            params[:query],
-            class: "form-control me-2",
-            placeholder: "Type a keyword" %>
-      <%= submit_tag "Search", name: "", class: "btn btn-primary" %>
+  <div class="col-md-10">
+    <%= form_with url: tubs_path, method: :get, class: "row gx-2 align-items-end" do %>
+
+      <!-- Keyword Search -->
+      <div class="col-md-3">
+        <%= label_tag :query, "Keyword" %>
+        <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "e.g. relaxing, jets..." %>
+      </div>
+
+      <!-- Category Dropdown -->
+      <div class="col-md-2">
+        <%= label_tag :category, "Category" %>
+        <%= select_tag :category,
+              options_for_select([["All", ""]] + Tub::CATEGORIES.map { |c| [c.titleize, c] }, params[:category]),
+              class: "form-select" %>
+      </div>
+
+      <!-- Size Dropdown -->
+      <div class="col-md-2">
+        <%= label_tag :size, "Size" %>
+        <%= select_tag :size,
+              options_for_select([["All", ""]] + Tub::SIZES.map { |s| [s.titleize, s] }, params[:size]),
+              class: "form-select" %>
+      </div>
+
+      <!-- Min Price -->
+      <div class="col-md-2">
+        <%= label_tag :min_price, "Min Price" %>
+        <%= number_field_tag :min_price, params[:min_price], class: "form-control", placeholder: "0" %>
+      </div>
+
+      <!-- Max Price -->
+      <div class="col-md-2">
+        <%= label_tag :max_price, "Max Price" %>
+        <%= number_field_tag :max_price, params[:max_price], class: "form-control", placeholder: "500" %>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-md-1">
+        <%= submit_tag "Search", name: nil, class: "btn btn-primary w-100" %>
+      </div>
     <% end %>
   </div>
 </div>
 
-<!-- Main Content -->
+
 <div class="row">
-  <!-- Left: List of Cards -->
   <div class="col-md-4 overflow-auto" style="max-height: 500px;">
     <ul class="list-unstyled">
       <% @tubs.each do |tub| %>
@@ -24,7 +56,6 @@
     </ul>
   </div>
 
-  <!-- Right: Map -->
   <div class="col-md-8">
     <div style="width: 100%; height: 500px;"
       data-controller="map"
